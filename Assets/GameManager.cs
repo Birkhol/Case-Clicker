@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject caseButtonPrefab;  // Prefab button for buying/opening cases
     public GameObject caseListPanel;
     public Button toggleCasePanelButton;
+    public Text prizeText;
 
     private int caseCount = 0;
     private int autoClickCount = 0;
@@ -80,35 +81,72 @@ public class GameManager : MonoBehaviour
     {
         foreach (Case c in cases)
         {
-            GameObject newButton = Instantiate(caseButtonPrefab, caseListParent);
-            newButton.GetComponentInChildren<Text>().text = $"Open {c.name} ({c.cost})";
+            Case localCase = c;
 
-            newButton.GetComponent<Button>().onClick.AddListener(() => TryOpenCase(c));
+            GameObject newButton = Instantiate(caseButtonPrefab, caseListParent);
+            newButton.GetComponentInChildren<Text>().text = $"Open {localCase.name} ({localCase.cost})";
+
+            newButton.GetComponent<Button>().onClick.AddListener(() => TryOpenCase(localCase));
         }
     }
 
-    void TryOpenCase(Case c)
+
+    public void TryOpenCase(Case selectedCase)
     {
-        if (caseCount >= c.cost)
+        if (caseCount >= selectedCase.cost)
         {
-            caseCount -= c.cost;
+            caseCount -= selectedCase.cost;
             UpdateCaseText();
 
-            int index = Random.Range(0, c.possiblePrizes.Length);
-            string reward = c.possiblePrizes[index];
+            // Get random prize
+            string prize = selectedCase.possiblePrizes[Random.Range(0, selectedCase.possiblePrizes.Length)];
 
-            Debug.Log($"You opened a {c.name} and got: {reward}");
-            // Optionally: Display reward with UI popup, animation, sound, etc.
+            Debug.Log($"You opened a {selectedCase.name} and won: {prize}");
+
+            ShowPrize(prize); // optional
         }
         else
         {
-            Debug.Log("Not enough cases to open this.");
+            Debug.Log("Not enough cases to open " + selectedCase.name);
         }
     }
+
 
     void ToggleCasePanel()
     {
         caseListPanel.SetActive(!caseListPanel.activeSelf);
     }
+
+    public void BuyCase(int caseIndex)
+    {
+        if (caseIndex < 0 || caseIndex >= cases.Length) return;
+
+        Case selectedCase = cases[caseIndex];
+
+        if (caseCount >= selectedCase.cost)
+        {
+            caseCount -= selectedCase.cost;
+            UpdateCaseText();
+
+            // Pick a random prize
+            string prize = selectedCase.possiblePrizes[Random.Range(0, selectedCase.possiblePrizes.Length)];
+
+            // Show the prize
+            Debug.Log("You opened a " + selectedCase.name + " and got: " + prize);
+            ShowPrize(prize); // Optional display method
+
+            // Optionally: update player inventory here
+        }
+        else
+        {
+            Debug.Log("Not enough cases to buy: " + selectedCase.name);
+        }
+    }
+
+    void ShowPrize(string prize)
+    {
+        prizeText.text = "You won: " + prize;
+    }
+
 
 }
