@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\UnityProjects\\Case Clicker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|d:\\unityprojects\\case clicker\\assets\\caseopeningmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|solutionrelative:assets\\caseopeningmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|d:\\unityprojects\\case clicker\\assets\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|D:\\UnityProjects\\Case Clicker\\assets\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|solutionrelative:assets\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|D:\\UnityProjects\\Case Clicker\\assets\\casedefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|solutionrelative:assets\\casedefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|d:\\unityprojects\\case clicker\\assets\\caseopeningmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768DD3DF-9424-DD37-E691-F5BFD30A5584}|Assembly-CSharp.csproj|solutionrelative:assets\\caseopeningmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,39 +50,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "CaseOpeningManager.cs",
               "DocumentMoniker": "D:\\UnityProjects\\Case Clicker\\Assets\\CaseOpeningManager.cs",
               "RelativeDocumentMoniker": "Assets\\CaseOpeningManager.cs",
               "ToolTip": "D:\\UnityProjects\\Case Clicker\\Assets\\CaseOpeningManager.cs",
               "RelativeToolTip": "Assets\\CaseOpeningManager.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAIwJQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-24T10:49:51.417Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GameManager.cs",
               "DocumentMoniker": "D:\\UnityProjects\\Case Clicker\\Assets\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\GameManager.cs",
               "ToolTip": "D:\\UnityProjects\\Case Clicker\\Assets\\GameManager.cs",
               "RelativeToolTip": "Assets\\GameManager.cs",
-              "ViewState": "AgIAALMAAAAAAAAAAADwv8QAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAcwGUAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-24T10:43:04.807Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CaseDefinition.cs",
               "DocumentMoniker": "D:\\UnityProjects\\Case Clicker\\Assets\\CaseDefinition.cs",
               "RelativeDocumentMoniker": "Assets\\CaseDefinition.cs",
               "ToolTip": "D:\\UnityProjects\\Case Clicker\\Assets\\CaseDefinition.cs",
               "RelativeToolTip": "Assets\\CaseDefinition.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-24T10:42:58.02Z",
               "EditorCaption": ""

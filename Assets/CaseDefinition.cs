@@ -7,4 +7,5 @@ public class Case
     public int cost;
     public string[] possiblePrizes;
     public Sprite[] prizeImages;
+    public Sprite caseImage;
 }

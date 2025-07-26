@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public ScrollRect scrollRect;
     public GameObject prizeImagePrefab;
     public RectTransform content;
+    public delegate void CaseCountChanged(int newCount);
+    public event CaseCountChanged OnCaseCountChanged;
 
 
     private int caseCount = 0;
@@ -66,7 +68,9 @@ public class GameManager : MonoBehaviour
     void UpdateCaseText()
     {
         caseText.text = "Case: " + caseCount.ToString();
+        OnCaseCountChanged?.Invoke(caseCount);
     }
+
 
     void onBuyAutoClicker()
     {
@@ -95,9 +99,16 @@ public class GameManager : MonoBehaviour
             GameObject newButton = Instantiate(caseButtonPrefab, caseListParent);
             newButton.GetComponentInChildren<Text>().text = $"Open {localCase.name} ({localCase.cost})";
 
+            Image icon = newButton.transform.Find("IconImage")?.GetComponent<Image>();
+            if (icon != null)
+            {
+                icon.sprite = localCase.caseImage;
+            }
+
             newButton.GetComponent<Button>().onClick.AddListener(() => TryOpenCase(localCase));
         }
     }
+
 
     public void TryOpenCase(Case selectedCase)
     {
@@ -109,11 +120,10 @@ public class GameManager : MonoBehaviour
             caseCount -= selectedCase.cost;
             UpdateCaseText();
 
-            caseOpeningPanel.SetActive(true); // Show panel
-            StartCoroutine(SpinCase(selectedCase)); // Start animated spin
-
+            caseOpeningManager.StartCaseOpening(selectedCase, OnSpinFinished); // <== callback
         }
     }
+
 
     void ToggleCasePanel()
     {
@@ -151,50 +161,21 @@ public class GameManager : MonoBehaviour
         prizeText.text = "You won: " + prize;
     }
 
-    private IEnumerator SpinCase(Case selectedCase)
+
+    public int GetCaseCount()
     {
-        foreach (Transform child in content)
-            Destroy(child.gameObject);
+        return caseCount;
+    }
 
-        int totalItems = 30;
-        int winningIndex = Random.Range(10, 20);
-        int actualPrizeIndex = Random.Range(0, selectedCase.possiblePrizes.Length);
+    public void AddCase(int amount)
+    {
+        caseCount += amount;
+        UpdateCaseText(); // your original UI updater
+    }
 
-        for (int i = 0; i < totalItems; i++)
-        {
-            GameObject img = Instantiate(prizeImagePrefab, content);
-            int index = (i == winningIndex) ? actualPrizeIndex : Random.Range(0, selectedCase.possiblePrizes.Length);
-            img.GetComponent<Image>().sprite = selectedCase.prizeImages[index];
-            img.name = selectedCase.possiblePrizes[index];
-        }
-
-        yield return null; // wait for layout update
-
-        float itemWidth = prizeImagePrefab.GetComponent<RectTransform>().rect.width;
-        float spacing = content.GetComponent<HorizontalLayoutGroup>().spacing;
-        float targetPosition = (itemWidth + spacing) * winningIndex;
-
-        float duration = 3f;
-        float time = 0f;
-        float startX = content.anchoredPosition.x;
-        float endX = -targetPosition + scrollRect.viewport.rect.width / 2 - itemWidth / 2;
-
-        while (time < duration)
-        {
-            float t = time / duration;
-            t = 1f - Mathf.Pow(1f - t, 3); // ease out
-            content.anchoredPosition = new Vector2(Mathf.Lerp(startX, endX, t), content.anchoredPosition.y);
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        content.anchoredPosition = new Vector2(endX, content.anchoredPosition.y);
-
-        string wonPrize = selectedCase.possiblePrizes[actualPrizeIndex];
-        Debug.Log($"Player won: {wonPrize}");
-
+    private void OnSpinFinished()
+    {
         isSpinning = false;
- 
     }
 
 
